@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+Nombre:  Marco Cartes
+Seccion: 001-D
+*/
+
+int menuwhile=1, menu, V, R[3]; 
+char nombre[20];
+int RT, Amp, Ap1, Ap2, i;
+
+main(){
+	while(menuwhile==1){
+		system("cls");
+		printf("Ingrese su nombre y apellido separados por un guion (-):\n");
+		scanf("%s",&nombre);
+		printf("Ingrese el valor del voltaje a usar:\n");
+		scanf("%d",&V);
+		printf("\nIngrese el tipo de circuito \n\n[1]Serie\n\n[2]Paralelo\n\n[3]Mixto\n");
+		scanf("%d",&menu);
+		if(menu==1){
+			for(i=1;i<=3;i++){
+			printf("Ingrese el valor de la resistencia %d\n",i);
+			scanf("%d",&R[i]);
+			}
+			RT=R[1]+R[2]+R[3];
+			Amp=V/RT;
+			printf("Señor %s\n",nombre);
+			printf("El Voltaje usado fue de %d Volts\n",V);
+			printf("El Amperaje total es: %d\n",Amp);
+			printf("La Resistencia total es: %d\n",RT);
+		}
+		else if(menu==2){
+			for(i=1;i<=3;i++){
+			printf("Ingrese el valor de la resistencia %d\n",i);
+			scanf("%d",&R[i]);
+			}
+			RT=1/((1/R[1])+(1/R[2])+(1/R[3]));
+			Amp=V/RT;
+			printf("Señor %s\n",nombre);
+			printf("El Voltaje usado fue de %d Volts\n",V);
+			printf("El Amperaje total es: %d\n",Amp);
+			printf("La Resistencia total es: %d\n",RT);
+		}
+		else if(menu==3){
+			printf("Ingrese el valor de la resistencia en paralelo\n");
+			scanf("%d",&R[3]);
+			for(i=1;i<3;i++){
+			printf("Ingrese el valor de la resistencia en serie %d\n",i);
+			scanf("%d",&R[i]);
+			}
+			RT=(R[3]+1/((1/R[1])+(1/R[2])));
+			printf("Señor %s\n",nombre);
+			printf("El Voltaje usado fue de %d Volts\n",V);
+			printf("El Amperaje total es: %d\n",Amp);
+			printf("La Resistencia total es: %d\n",RT);
+		}
+		else{
+			printf("Ese numero no se encuentra entre las opciones");
+		}
+		printf("\nDesea repetir el proceso?");
+		scanf("%d",&menuwhile);
+	}
+	system("pause");
+}
