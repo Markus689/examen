@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+Nombre:  Marco Cartes
+Seccion: 001-D
+*/
+
+int menuwhile=1, menu;
+char nombre[20];
+float RT, Amp, R1, R2, R3, Ap1, Ap2, Ap3, V, V1, V2, Rp;
+
+main(){
+	while(menuwhile==1){
+		system("cls");
+		printf("Ingrese su nombre y apellido separados por un guion (-):\n");
+		scanf("%s",&nombre);
+		printf("\nIngrese el valor del voltaje a usar:\n");
+		scanf("%f",&V);
+		printf("\nIngrese el tipo de circuito \n\n[1]Serie\n[2]Paralelo\n[3]Mixto\n");
+		scanf("%d",&menu);
+		if(menu==1){
+			printf("Ingrese el valor de la resistencia 1\n");
+			scanf("%f",&R1);
+			printf("\nIngrese el valor de la resistencia 2\n");
+			scanf("%f",&R2);
+			printf("\nIngrese el valor de la resistencia 3\n");
+			scanf("%f",&R3);
+			RT=R1+R2+R3;
+			Amp=V/RT;
+			printf("\nSr. %s\n",nombre);
+			printf("El Voltaje usado fue de %f Volts\n",V);
+			printf("La Intensidad total es de: %f Amps\n",Amp);
+			printf("La Resistencia total es de: %f Ohms\n",RT);
+		}
+		else if(menu==2){
+			printf("Ingrese el valor de la resistencia 1\n");
+			scanf("%f",&R1);
+			printf("\nIngrese el valor de la resistencia 2\n");
+			scanf("%f",&R2);
+			printf("\nIngrese el valor de la resistencia 3\n");
+			scanf("%f",&R3);
+			RT=1/((1/R1)+(1/R2)+(1/R3));
+			Amp=V/RT;
+			Ap1=V/R1;
+			Ap2=V/R2;
+			Ap3=V/R3;
+			printf("\nSr. %s\n",nombre);
+			printf("El Voltaje usado fue de %f Volts\n",V);
+			printf("La Intensidad total es de: %f Amps\n",Amp);
+			printf("Las Intensidades parciales son de: \n%f Amps, \n%f Amps y \n%f Amps\n",Ap1,Ap2,Ap3);
+			printf("La Resistencia total es de: %f Ohms\n",RT);
+		}
+		else if(menu==3){
+			printf("Ingrese el valor de la resistencia en paralelo \n");
+			scanf("%f",&R1);
+			printf("\nIngrese el valor de la resistencia en serie 1\n");
+			scanf("%f",&R2);
+			printf("\nIngrese el valor de la resistencia en serie 2\n");
+			scanf("%f",&R3);
+			Rp=R2+R3;
+			RT=(Rp*R1)/(Rp+R1);
+			Ap1=V/R1;
+			Ap2=V/Rp;
+			Amp=Ap1+Ap2;
+			printf("\nSr. %s\n",nombre);
+			printf("El Voltaje usado fue de %f Volts\n",V);
+			printf("La Intensidad total es de: %f Amps\n",Amp);
+			printf("Las Intensidades parciales son de \n%f Amps y \n%f Amps\n",Ap1,Ap2);
+			printf("La Resistencia total es de: %f Ohms\n",RT);
+		}
+		else{
+			printf("\nEse numero no se encuentra entre las opciones\n");
+		}
+		printf("\nDesea repetir el proceso? \n[1]Si \n[2]No\n");
+		scanf("%d",&menuwhile);
+	}
+	system("pause");
+}
