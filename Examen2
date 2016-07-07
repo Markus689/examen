@@ -6,74 +6,77 @@ Nombre:  Marco Cartes
 Seccion: 001-D
 */
 
-int menuwhile=1, menu;
-char nombre[20];
-float RT, Amp, R1, R2, R3, Ap1, Ap2, Ap3, V, V1, V2, Rp;
+int menuwhile=1, menu;																	//Variables enteras
+char nombre[20];																		//Variables de caracteres
+float RT, Amp, R1, R2, R3, Ap1, Ap2, Ap3, V, V1, V2, Rp;								//Variables en decimales
 
 main(){
-	while(menuwhile==1){
-		system("cls");
-		printf("Ingrese su nombre y apellido separados por un guion (-):\n");
+	while(menuwhile==1){																//bucle de repeticion de proceso
+		system("cls");																	//limpieza de pantalla
+		printf("Ingrese su nombre y apellido separados por un guion (-):\n");			//Ingreso del nombre del usuario
 		scanf("%s",&nombre);
-		printf("\nIngrese el valor del voltaje a usar:\n");
+		printf("\nIngrese el valor del voltaje a usar:\n");								//Ingreso del voltaje a usar
 		scanf("%f",&V);
-		printf("\nIngrese el tipo de circuito \n\n[1]Serie\n[2]Paralelo\n[3]Mixto\n");
+		printf("\nIngrese el tipo de circuito \n\n[1]Serie\n[2]Paralelo\n[3]Mixto\n");	//Seleccion del tipo de circuito
 		scanf("%d",&menu);
-		if(menu==1){
-			printf("Ingrese el valor de la resistencia 1\n");
+		if(menu==1){																	//Entrada a los calculos de un circuito serie
+			printf("Ingrese el valor de la resistencia 1\n");							//Ingreso de la primera resistencia
 			scanf("%f",&R1);
-			printf("\nIngrese el valor de la resistencia 2\n");
+			printf("\nIngrese el valor de la resistencia 2\n");							//Ingreso de la segunda resistencia
 			scanf("%f",&R2);
-			printf("\nIngrese el valor de la resistencia 3\n");
+			printf("\nIngrese el valor de la resistencia 3\n");							//Ingreso de la tercera resistencia
 			scanf("%f",&R3);
-			RT=R1+R2+R3;
-			Amp=V/RT;
-			printf("\nSr. %s\n",nombre);
-			printf("El Voltaje usado fue de %f Volts\n",V);
-			printf("La Intensidad total es de: %f Amps\n",Amp);
-			printf("La Resistencia total es de: %f Ohms\n",RT);
+			RT=R1+R2+R3;																//Calculos internos para la resistencia total en serie
+			Amp=V/RT;																	//Calculo de la Intensidad total en serie
+			Ap1=Amp;																	//Calculo de la Intesidad parcial en la primera resistencia
+			Ap2=Amp;																	//Calculo de la Intesidad parcial en la segunda resistencia
+			Ap3=Amp;																	//Calculo de la Intesidad parcial en la tercera resistencia
+			printf("\nSr. %s\n",nombre);												
+			printf("El Voltaje usado fue de %f Volts\n",V);								//Impresion de los calculos hechos de forma interna
+			printf("La Intensidad total es de: %f Amps\n",Amp);													//Intensidad total
+			printf("Las Intensidades parciales son de: \n%f Amps, \n%f Amps y \n%f Amps\n",Ap1,Ap2,Ap3);		//Intensidad parcial
+			printf("La Resistencia total es de: %f Ohms\n",RT);													//Resistencia total
 		}
-		else if(menu==2){
-			printf("Ingrese el valor de la resistencia 1\n");
+		else if(menu==2){																//Entrada a los calculos de un circuito paralelo
+			printf("Ingrese el valor de la resistencia 1\n");							//Ingreso de la primera resistencia
 			scanf("%f",&R1);
-			printf("\nIngrese el valor de la resistencia 2\n");
+			printf("\nIngrese el valor de la resistencia 2\n");							//Ingreso de la segunda resistencia
 			scanf("%f",&R2);
-			printf("\nIngrese el valor de la resistencia 3\n");
+			printf("\nIngrese el valor de la resistencia 3\n");							//Ingreso de la tercera resistencia
 			scanf("%f",&R3);
-			RT=1/((1/R1)+(1/R2)+(1/R3));
-			Amp=V/RT;
-			Ap1=V/R1;
-			Ap2=V/R2;
-			Ap3=V/R3;
+			RT=1/((1/R1)+(1/R2)+(1/R3));												//Calculos internos para la resistencia total en paralelo
+			Amp=V/RT;																	//Calculo de la Intensidad total
+			Ap1=V/R1;																	//Calculo de la Intensidad parcial en la primera resistencia
+			Ap2=V/R2;																	//Calculo de la Intensidad parcial en la segunda resistencia
+			Ap3=V/R3;																	//Calculo de la Intensidad parcial en la tercera resistencia
 			printf("\nSr. %s\n",nombre);
-			printf("El Voltaje usado fue de %f Volts\n",V);
-			printf("La Intensidad total es de: %f Amps\n",Amp);
-			printf("Las Intensidades parciales son de: \n%f Amps, \n%f Amps y \n%f Amps\n",Ap1,Ap2,Ap3);
-			printf("La Resistencia total es de: %f Ohms\n",RT);
-		}
-		else if(menu==3){
-			printf("Ingrese el valor de la resistencia en paralelo \n");
+			printf("El Voltaje usado fue de %f Volts\n",V);								//Impresion de los calculos hechos de forma interna
+			printf("La Intensidad total es de: %f Amps\n",Amp);													//Intensidad total
+			printf("Las Intensidades parciales son de: \n%f Amps, \n%f Amps y \n%f Amps\n",Ap1,Ap2,Ap3);		//Intensidad parcial
+			printf("La Resistencia total es de: %f Ohms\n",RT);													//Resistencia total
+		}	
+		else if(menu==3){																//Entrada a los calculos de un circuito mixto
+			printf("Ingrese el valor de la resistencia en paralelo \n");				//Ingreso de la primera resistencia
 			scanf("%f",&R1);
-			printf("\nIngrese el valor de la resistencia en serie 1\n");
+			printf("\nIngrese el valor de la resistencia en serie 1\n");				//Ingreso de la segunda resistencia
 			scanf("%f",&R2);
-			printf("\nIngrese el valor de la resistencia en serie 2\n");
+			printf("\nIngrese el valor de la resistencia en serie 2\n");				//Ingreso de la tercera resistencia
 			scanf("%f",&R3);
-			Rp=R2+R3;
-			RT=(Rp*R1)/(Rp+R1);
-			Ap1=V/R1;
-			Ap2=V/Rp;
-			Amp=Ap1+Ap2;
+			Rp=R2+R3;																	//Calculo de la resistencias en serie
+			RT=(Rp*R1)/(Rp+R1);															//Calculo de la resistencia total entre la resistencia 1 y las resistencias en serie
+			Ap1=V/R1;																	//Calculo de la Intensidad parcial en la resistencia en paralelo
+			Ap2=V/Rp;																	//Calculo de la Intensidad parcial en la resistencias en series
+			Amp=Ap1+Ap2;																//Calculo de la Intensidad total
 			printf("\nSr. %s\n",nombre);
-			printf("El Voltaje usado fue de %f Volts\n",V);
-			printf("La Intensidad total es de: %f Amps\n",Amp);
-			printf("Las Intensidades parciales son de \n%f Amps y \n%f Amps\n",Ap1,Ap2);
-			printf("La Resistencia total es de: %f Ohms\n",RT);
+			printf("El Voltaje usado fue de %f Volts\n",V);								//Impresion de los calculos hechos de forma interna
+			printf("La Intensidad total es de: %f Amps\n",Amp);													//Intensidad total
+			printf("Las Intensidades parciales son de \n%f Amps y \n%f Amps\n",Ap1,Ap2);						//Intensidad parcial
+			printf("La Resistencia total es de: %f Ohms\n",RT);													//Resistencia total
 		}
 		else{
-			printf("\nEse numero no se encuentra entre las opciones\n");
+			printf("\nEse numero no se encuentra entre las opciones\n");				//Impresion necesaria en el caso de que no se seleccione una opcion disponible
 		}
-		printf("\nDesea repetir el proceso? \n[1]Si \n[2]No\n");
+		printf("\nDesea repetir el proceso? \n[1]Si \n[2]No\n");						//Reinicio del proceso inicial
 		scanf("%d",&menuwhile);
 	}
-	system("pause");
 }
